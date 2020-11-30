@@ -7,6 +7,9 @@ const Courses = require('../models/courses');
 const courseRouter = express.Router();
 const cors = require('./cors');
 
+const fileUpload = require('./middleware/file-upload');
+
+
 courseRouter.use(bodyParser.json());
 
 courseRouter.route('/')
@@ -22,14 +25,17 @@ courseRouter.route('/')
             .catch((err) => next(err));
     })
     .post(cors.corsWithOptions, (req, res, next) => {
+        // console.log("Request ---", req);
+        // console.log(req.body)
         Courses.create(req.body)
             .then((course) => {
                 console.log('Course Created ', course);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(course);
+                res.json(course._id);
             }, (err) => next(err))
             .catch((err) => next(err));
+        // res.json({ test: "test" });
     })
     .put(cors.corsWithOptions, (req, res, next) => {
         res.statusCode = 403;
@@ -44,6 +50,61 @@ courseRouter.route('/')
             }, (err) => next(err))
             .catch((err) => next(err));
     });
+
+
+
+
+
+
+courseRouter.route('/image/:courseId')
+    .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+    .post(
+        cors.corsWithOptions, // the corse middleware 
+        fileUpload.single('image'), // the multer middleware --> if multipart body attached with field named image it's activated
+        async (req, res, next) => {
+
+
+            //add the image file name to the database 
+            try {
+                course = await Courses.findById(req.params.courseId);
+
+            } catch (err) {
+                const error = new HttpError(
+                    'Something went wrong, could not add course image.',
+                    500
+                );
+                return next(error);
+            }
+
+            // console.log(course)
+            course.img = req.file.filename;
+            // console.log(course)
+
+            try {
+                await course.save();
+            } catch (err) {
+                const error = new HttpError(
+                    'Something went wrong, could not add course image.',
+                    500
+                );
+                return next(error);
+            }
+
+
+
+            // console.log(req.file.filename)
+            res.statusCode = 200;
+            res.json("success")
+        })
+
+
+
+
+
+
+
+
+
 
 courseRouter.route('/:courseId')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
