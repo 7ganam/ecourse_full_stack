@@ -110,7 +110,7 @@ courseRouter.route('/:courseId')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get(cors.cors, (req, res, next) => {
         Courses.findById(req.params.courseId)
-            .populate('comments.author')
+            // .populate('comments.author')
             .then((course) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');

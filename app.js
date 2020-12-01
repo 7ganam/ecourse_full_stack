@@ -16,6 +16,7 @@ const url = config.mongoUrl;
 
 //add my routers 
 var courseRouter = require('./routes/courseRouter');
+var workspaceRouter = require('./routes/workspaceRouter');
 
 
 
@@ -64,6 +65,8 @@ app.use('/users', usersRouter);
 
 //my own routers 
 app.use('/courses', courseRouter);
+app.use('/workspaces', workspaceRouter);
+
 
 
 
@@ -76,6 +79,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  console.log(err.message)
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
