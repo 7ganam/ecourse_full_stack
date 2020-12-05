@@ -10,6 +10,12 @@ const cors = require('./cors');
 const fileUpload = require('./middleware/file-upload');
 
 
+const TOKEN_SECRET_KEY = "this_should_be_imported_from_env_variable" //TODO:
+const jwt = require('jsonwebtoken');
+
+var _ = require('lodash');
+
+
 courseRouter.use(bodyParser.json());
 
 courseRouter.route('/')
@@ -24,19 +30,47 @@ courseRouter.route('/')
             }, (err) => next(err))
             .catch((err) => next(err));
     })
-    .post(cors.corsWithOptions, (req, res, next) => {
-        // console.log("Request ---", req);
-        // console.log(req.body)
-        Courses.create(req.body)
-            .then((course) => {
-                console.log('Course Created ', course);
+
+    .post(
+        cors.corsWithOptions
+        ,
+        (req, res, next) => {
+
+            try {
+                const token = req.headers.authorization.split(' ')[1]; // Authorization: 'Bearer TOKEN'
+                if (!token) {
+                    throw new Error('Authentication failed! no token found');
+                }
+                const decodedToken = jwt.verify(token, TOKEN_SECRET_KEY);
+                req.userData = { userId: decodedToken.userId };
+                next();
+            } catch (dev_err) {
+                const prod_error = new Error('Authentication failed!');
+                prod_error.status = 403;
+                return next(dev_err);
+                // return next(prod_error);
+
+            }
+        }
+        ,
+        async (req, res, next) => {
+            try {
+                let created_course = await Courses.create(req.body);
+                console.log('Course Created ', created_course);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(course._id);
-            }, (err) => next(err))
-            .catch((err) => next(err));
-        // res.json({ test: "test" });
-    })
+                res.json(created_course._id);
+
+            }
+            catch (dev_error) {
+                let prod_error = new Error("failed to register course")
+                prod_error.status = "500";
+                return next(dev_error)
+                // return next(prod_error )
+            }
+
+            // res.json({ test: "test" });
+        })
     .put(cors.corsWithOptions, (req, res, next) => {
         res.statusCode = 403;
         res.end('PUT operation not supported on /courses');
@@ -77,7 +111,8 @@ courseRouter.route('/image/:courseId')
             }
 
             // console.log(course)
-            course.img = req.file.filename;
+
+            course.img = _.has(req, 'file') ? req.file.filename : "";
             // console.log(course)
 
             try {

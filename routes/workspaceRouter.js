@@ -21,6 +21,7 @@ workspaceRouter.route('/')
                 res.json(workspaces);
             }, (err) => next(err))
             .catch((err) => next(err));
+
     })
     .post(cors.corsWithOptions,
         multer_workspace_middleware.fields(
