@@ -68,7 +68,7 @@ userRouter.route('/signup')
       let token;
       try {
         token = jwt.sign(
-          { userId: created_user.id, email: created_user.email, image: created_user.image },
+          { user: created_user, userId: created_user.id, email: created_user.email, image: created_user.image },
           TOKEN_SECRET_KEY,
           { expiresIn: '1h' }
         );
@@ -137,7 +137,7 @@ userRouter.route('/login') //TODO:  add false log in
       let expirateion_date_string = expiration_date.toISOString();
       try {
         token = jwt.sign(
-          { userId: existingUser.id, email: existingUser.email, image: existingUser.image },
+          { user: existingUser, userId: existingUser.id, email: existingUser.email, image: existingUser.image },
 
           TOKEN_SECRET_KEY,
           { expiresIn: expiration_time_in_hours + 'h' }

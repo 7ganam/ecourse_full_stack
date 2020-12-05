@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Session_schema = new Schema({
     Session_title: {
         type: String,
-        required: true,
+        // required: true,
         // unique: true
     },
     Session_Description: {
@@ -23,7 +23,7 @@ const Session_schema = new Schema({
         type: Boolean,
         // required: true,
         // unique: true
-    },
+    }
     // this should be removed late TODO:
 
 });
@@ -96,7 +96,13 @@ const courseSchema = new Schema({
     , rating: {
         type: Number,
         // required: true
-    }
+    },
+    user_id: {
+        type: mongoose.ObjectId,
+        required: true,
+        // unique: true
+    },
+
 },
 
     {

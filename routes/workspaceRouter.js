@@ -8,6 +8,10 @@ const fileUpload = require('./middleware/file-upload');
 const multer_workspace_middleware = require('./middleware/multer_workspace_middleware');
 
 
+const TOKEN_SECRET_KEY = "this_should_be_imported_from_env_variable" //TODO:
+const jwt = require('jsonwebtoken');
+var _ = require('lodash');
+
 
 workspaceRouter.use(bodyParser.json());
 
@@ -24,6 +28,24 @@ workspaceRouter.route('/')
 
     })
     .post(cors.corsWithOptions,
+        (req, res, next) => { // autherization middleware 
+            try {
+                const token = req.headers.authorization.split(' ')[1]; // Authorization: 'Bearer TOKEN'
+                if (!token) {
+                    throw new Error('Authentication failed! no token found');
+                }
+                const decodedToken = jwt.verify(token, TOKEN_SECRET_KEY);
+                req.userData = { userId: decodedToken.userId, user: decodedToken.user };
+                next();
+            } catch (dev_err) {
+                const prod_error = new Error('Authentication failed!');
+                prod_error.status = 403;
+                return next(dev_err);
+                // return next(prod_error);
+
+            }
+        }
+        ,
         multer_workspace_middleware.fields(
             [
                 {
@@ -74,6 +96,8 @@ workspaceRouter.route('/')
                 address: "-------------",  //TODO: add to the front end form
                 utilities: ['util1', 'util2', 'util3', 'util4'],
                 state: "pending",
+                user_id: mongoose.Types.ObjectId(req.userData.userId) // set by the autherization middleware
+
 
             }
             // console.log("ws", recived_workspace)

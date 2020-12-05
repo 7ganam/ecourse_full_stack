@@ -12,7 +12,6 @@ const fileUpload = require('./middleware/file-upload');
 
 const TOKEN_SECRET_KEY = "this_should_be_imported_from_env_variable" //TODO:
 const jwt = require('jsonwebtoken');
-
 var _ = require('lodash');
 
 
@@ -34,15 +33,14 @@ courseRouter.route('/')
     .post(
         cors.corsWithOptions
         ,
-        (req, res, next) => {
-
+        (req, res, next) => { // autherization middleware 
             try {
                 const token = req.headers.authorization.split(' ')[1]; // Authorization: 'Bearer TOKEN'
                 if (!token) {
                     throw new Error('Authentication failed! no token found');
                 }
                 const decodedToken = jwt.verify(token, TOKEN_SECRET_KEY);
-                req.userData = { userId: decodedToken.userId };
+                req.userData = { userId: decodedToken.userId, user: decodedToken.user };
                 next();
             } catch (dev_err) {
                 const prod_error = new Error('Authentication failed!');
@@ -53,9 +51,34 @@ courseRouter.route('/')
             }
         }
         ,
-        async (req, res, next) => {
+        async (req, res, next) => { //setting course to database middleware 
+            let recieved_course;
             try {
-                let created_course = await Courses.create(req.body);
+                recieved_course =
+                {
+                    Sessions: req.body.Sessions,
+                    author: req.userData.user.name,
+                    description: req.body.description,
+                    endDate: req.body.endDate,
+                    img: req.body.img,
+                    price: req.body.price,
+                    rating: req.body.rating,
+                    slogan: req.body.slogan,
+                    startDate: req.body.startDate,
+                    title: req.body.title,
+                    what_will_learn: req.body.what_will_learn,
+                    workspace_name: req.body.workspace_name,
+                    user_id: mongoose.Types.ObjectId(req.userData.userId) // set by the autherization middleware
+
+                }
+                console.log(recieved_course)
+            }
+            catch (dev_error) {
+                return next(dev_error)
+            }
+
+            try {
+                let created_course = await Courses.create(recieved_course);
                 console.log('Course Created ', created_course);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -96,12 +119,9 @@ courseRouter.route('/image/:courseId')
         cors.corsWithOptions, // the corse middleware 
         fileUpload.single('image'), // the multer middleware --> if multipart body attached with field named image it's activated
         async (req, res, next) => {
-
-
             //add the image file name to the database 
             try {
                 course = await Courses.findById(req.params.courseId);
-
             } catch (err) {
                 const error = new HttpError(
                     'Something went wrong, could not add course image.',

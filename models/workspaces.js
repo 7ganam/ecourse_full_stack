@@ -74,7 +74,12 @@ const workspaceSchema = new Schema({
     state:
     {
         type: String,
-    }
+    },
+    user_id: {
+        type: mongoose.ObjectId,
+        required: true,
+        // unique: true
+    },
 
 },
 
