@@ -32,16 +32,16 @@ workspaceRouter.route('/')
             try {
                 const token = req.headers.authorization.split(' ')[1]; // Authorization: 'Bearer TOKEN'
                 if (!token) {
-                    throw new Error('Authentication failed! no token found');
+                    throw new Error('Authentication failed! you are not logged in');
                 }
                 const decodedToken = jwt.verify(token, TOKEN_SECRET_KEY);
                 req.userData = { userId: decodedToken.userId, user: decodedToken.user };
                 next();
             } catch (dev_err) {
-                const prod_error = new Error('Authentication failed!');
+                const prod_error = new Error('Authentication failed! you are not logged in');
                 prod_error.status = 403;
-                return next(dev_err);
-                // return next(prod_error);
+                // return next(dev_err);
+                return next(prod_error);
 
             }
         }
@@ -71,44 +71,51 @@ workspaceRouter.route('/')
             ]
         )
         ,
-        (req, res, next) => {
-            // console.log("Request ---", req);
-            // console.log("files", req.files["logo_image"])
+        async (req, res, next) => {
+
             let recived_workspace = {
 
                 //TODO:  decide if i will allow users to add workspaces without images ... 
 
                 logo_image: !(!!req.files['logo_image']) ? "" : req.files["logo_image"][0]['filename'],  // check if the comming req has a logo_image field (i used bang bang here) --> if so add its field
-                images: [ // my syntax here is abit unclear
+                images: [ // my syntax here is abit unclear fix this with lodash later //TODO:
                     !(!!req.files['f_image_1']) ? "" : req.files['f_image_1'][0].filename,
                     !(!!req.files['f_image_2']) ? "" : req.files['f_image_2'][0].filename,
                     !(!!req.files['f_image_3']) ? "" : req.files['f_image_3'][0].filename,
                     !(!!req.files['f_image_4']) ? "" : req.files['f_image_4'][0].filename,
                 ],
                 workspace_name: req.body.workspaceName,
-                session_price: 0, //TODO: will change when i add it to the form
+                session_price: req.body.session_price,
                 rating: 5, ////TODO: will change when i figure out the rating logic
                 location: {
                     lng: req.body.lng,
                     lat: req.body.lat
                 },
-                phone: "00000000000", //TODO: add to the front end form
-                address: "-------------",  //TODO: add to the front end form
-                utilities: ['util1', 'util2', 'util3', 'util4'],
+                phone: req.body.phone,
+                address: req.body.address,
+                utilities: req.body.utilities.split(","),
                 state: "pending",
                 user_id: mongoose.Types.ObjectId(req.userData.userId) // set by the autherization middleware
+            }
+
+            // console.log("ws", recived_workspace)
+            let created_workspace;
+            try {
+                created_workspace = await Workspaces.create(recived_workspace)
+                console.log('workspace Created ', created_workspace);
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(created_workspace._id);
+            }
+            catch (dev_err) {
+                const prod_err = new Error("failed to create workspce account ")
+                prod_err.status = '500';
+                return next(dev_err)
+                // return next(prod_err)
 
 
             }
-            // console.log("ws", recived_workspace)
-            Workspaces.create(recived_workspace)
-                .then((workspace) => {
-                    console.log('workspace Created ', workspace);
-                    res.statusCode = 200;
-                    res.setHeader('Content-Type', 'application/json');
-                    res.json(workspace._id);
-                }, (err) => next(err))
-                .catch((err) => next(err));
+
 
             // res.json({ test: "test" });
         })

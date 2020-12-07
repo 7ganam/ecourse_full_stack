@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var User = new Schema({
   name: {
     type: String,
-    default: ''
+    required: true,
   },
   type: { //admin , workspaceowner , student , instructor
     type: String,
@@ -12,10 +12,12 @@ var User = new Schema({
   },
   email: {
     type: String,
-    // unique:true,
+    required: true,
+    unique: true
   },
   password: {
     type: String,
+    required: true,
   },
   image: {
     type: String,

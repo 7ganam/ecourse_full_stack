@@ -58,7 +58,7 @@ const workspaceSchema = new Schema({
     },
     phone:
     {
-        type: String,
+        type: Number,
         // required: true
     },
     address:

@@ -9,6 +9,7 @@ const cors = require('./cors');
 
 const fileUpload = require('./middleware/file-upload');
 
+const multer_course_middleware = require('./middleware/multer_course_middleware');
 
 const TOKEN_SECRET_KEY = "this_should_be_imported_from_env_variable" //TODO:
 const jwt = require('jsonwebtoken');
@@ -37,15 +38,15 @@ courseRouter.route('/')
             try {
                 const token = req.headers.authorization.split(' ')[1]; // Authorization: 'Bearer TOKEN'
                 if (!token) {
-                    throw new Error('Authentication failed! no token found');
+                    throw new Error('Authentication failed! you are not logged in');
                 }
                 const decodedToken = jwt.verify(token, TOKEN_SECRET_KEY);
                 req.userData = { userId: decodedToken.userId, user: decodedToken.user };
                 next();
             } catch (dev_err) {
-                const prod_error = new Error('Authentication failed!');
+                const prod_error = new Error('Authentication failed! you are not logged in!');
                 prod_error.status = 403;
-                return next(dev_err);
+                return next(prod_error);
                 // return next(prod_error);
 
             }
@@ -54,9 +55,16 @@ courseRouter.route('/')
         async (req, res, next) => { //setting course to database middleware 
             let recieved_course;
             try {
+                Sessions2 = req.body.Sessions.map(session => {// set isopen to false for all sessions
+                    mod_session = session
+                    mod_session.isOpen = false
+                    return (mod_session)
+
+                })
+                console.log(Sessions2)
                 recieved_course =
                 {
-                    Sessions: req.body.Sessions,
+                    Sessions: Sessions2,
                     author: req.userData.user.name,
                     description: req.body.description,
                     endDate: req.body.endDate,
@@ -71,15 +79,18 @@ courseRouter.route('/')
                     user_id: mongoose.Types.ObjectId(req.userData.userId) // set by the autherization middleware
 
                 }
-                console.log(recieved_course)
+                // console.log(recieved_course)
             }
             catch (dev_error) {
+                let prod_error = new Error("failed to register course")
+                prod_error.status = "500";
+                // return next(prod_error)
                 return next(dev_error)
             }
 
             try {
                 let created_course = await Courses.create(recieved_course);
-                console.log('Course Created ', created_course);
+                // console.log('Course Created ', created_course);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(created_course._id);
@@ -89,7 +100,7 @@ courseRouter.route('/')
                 let prod_error = new Error("failed to register course")
                 prod_error.status = "500";
                 return next(dev_error)
-                // return next(prod_error )
+                // return next(prod_error)
             }
 
             // res.json({ test: "test" });
@@ -117,23 +128,74 @@ courseRouter.route('/image/:courseId')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .post(
         cors.corsWithOptions, // the corse middleware 
-        fileUpload.single('image'), // the multer middleware --> if multipart body attached with field named image it's activated
-        async (req, res, next) => {
-            //add the image file name to the database 
+
+        multer_course_middleware.any(),// the multer middleware --> if multipart body attached with field named image it's activated
+
+        async (dev_err_multer, req, res, next) => { // middle ware to delete course data if image has invalid format
+            //search the db for the course
             try {
                 course = await Courses.findById(req.params.courseId);
-            } catch (err) {
-                const error = new HttpError(
-                    'Something went wrong, could not add course image.',
-                    500
-                );
-                return next(error);
+            } catch (dev_err) {
+                const prod_error = new Error('Something went wrong, could not add course image.')
+                prod_error.status = "500"
+                return next(prod_error);
             }
 
-            // console.log(course)
+            course.remove(() => {
+                const prod_error = new Error('invalid image format.')
+                prod_error.status = "500"
+                return next(prod_error);
+            })
 
-            course.img = _.has(req, 'file') ? req.file.filename : "";
-            // console.log(course)
+        },
+
+
+
+        async (req, res, next) => {
+
+
+            //-------- adding images (if found) to the course in database 
+
+            //search the db for the course
+            try {
+                course = await Courses.findById(req.params.courseId);
+            } catch (dev_err) {
+                const prod_error = new Error('Something went wrong, could not add course image.')
+                prod_error.status = "500"
+                return next(prod_error);
+            }
+
+
+
+            // if req has image file add it as course image if not do nothing
+            try {
+                course.img = (_.has(req, 'files') && _.has(req.files[0], 'fieldname') && (req.files[0].fieldname === 'image')) ? req.files[0].filename : "";
+            }
+            catch (dev_error) {
+                const prod_error = new Error(' could not add course image.')
+                prod_error.status = "500"
+                return next(prod_error);
+            }
+
+
+            for (var i = 0; i < course.Sessions.length; i++) {
+                console.log("1")
+                if (_.has(req, 'files')) {
+                    console.log("2")
+
+                    let session_image = req.files.filter(file => file['fieldname'] == `session_${i + 1}_img`)
+                    console.log({ session_image })
+                    if (session_image.length > 0) {
+                        console.log(session_image[0].filename)
+
+                        course.Sessions[i].Session_image = session_image[0].filename
+                    }
+                }
+
+            }
+
+            console.log({ course })
+
 
             try {
                 await course.save();
@@ -146,6 +208,7 @@ courseRouter.route('/image/:courseId')
             }
 
 
+            console.log(course.Sessions)
 
             // console.log(req.file.filename)
             res.statusCode = 200;

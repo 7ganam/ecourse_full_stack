@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Session_schema = new Schema({
     Session_title: {
         type: String,
-        // required: true,
+        required: true,
         // unique: true
     },
     Session_Description: {
@@ -15,6 +15,14 @@ const Session_schema = new Schema({
 
     Session_startDate: {
         type: Date,
+        // required: true,
+        // unique: true
+    }
+    ,
+
+    Session_image: {
+        type: String,
+        default: "",
         // required: true,
         // unique: true
     },

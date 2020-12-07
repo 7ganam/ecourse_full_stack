@@ -22,9 +22,6 @@ userRouter.route('/signup')
   .post(cors.corsWithOptions,
     multer_user_middleware.single("image"),// extract image file --> save image file to filesystme --> add req.file object --> create req.body object
     async (req, res, next) => {
-      // console.log("Request ---", req);
-      // console.log(user)
-
 
       //gerate a hashed password for the input password with salt 12
       let hashedPassword;
@@ -47,7 +44,6 @@ userRouter.route('/signup')
         password: hashedPassword,
         image: _.has(req, 'file') ? req.file.filename : "",
       }
-      // console.log('user ', user);
 
 
       // add the json object to the database
@@ -59,31 +55,48 @@ userRouter.route('/signup')
       catch (dev_err) {
         const prod_error = new Error('signing up failed, please try later.');
         prod_error.status = "500"
-        return next(dev_err)
-        // return next(prod_error)
+        // return next(dev_err)
+        return next(prod_error)
       };
 
 
       //generating tokens
+
       let token;
+
+      let expiration_time_in_hours = 10000;//TODO: make the token expiration in the front end  ... i will leave this huge number as is now
+      let expiration_date = new Date(new Date().getTime() + expiration_time_in_hours * 60 * 60 * 1000);
+      let expirateion_date_string = expiration_date.toISOString();
+
       try {
         token = jwt.sign(
           { user: created_user, userId: created_user.id, email: created_user.email, image: created_user.image },
           TOKEN_SECRET_KEY,
-          { expiresIn: '1h' }
+          { expiresIn: expiration_time_in_hours + 'h' }
+
         );
       } catch (dev_err) {
         const prod_error = new Error('signing up failed, please try later.');
         prod_error.status = "500"
-        return next(dev_err)
-        // return next(prod_error)
+        // return next(dev_err)
+        return next(prod_error)
       }
 
 
       //sending the response back
       res
         .status(201)
-        .json({ userId: created_user.id, email: created_user.email, token: token });
+        .json({
+          message: 'Logged in!',
+          expirateion_date_string: expirateion_date_string,
+          user:
+          {
+            email: created_user.email,
+            id: created_user.id,
+            image: created_user.image
+          },
+          token: token
+        });
 
     });
 
@@ -158,7 +171,6 @@ userRouter.route('/login') //TODO:  add false log in
           expirateion_date_string: expirateion_date_string,
           user:
           {
-
             email: existingUser.email,
             id: existingUser.id,
             image: existingUser.image
