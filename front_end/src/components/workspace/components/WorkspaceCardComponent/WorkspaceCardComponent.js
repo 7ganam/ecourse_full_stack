@@ -38,7 +38,7 @@ const WorkspaceCard = (props) => {
                         </div>
 
                     </CardText>
-                    <Link to={`/Workspaces/${props.workspace_id}`} >
+                    <Link to={`/WORKSPACES/${props.workspace_id}`} >
                         <Button style={{ width: "100%" }} color="success" >Explore workspace </Button>
                     </Link >
                 </CardBody>
