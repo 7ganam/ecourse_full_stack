@@ -154,7 +154,9 @@ class Main extends Component {
         };
 
         const workspace_with_id = ({ match }) => {
+            console.log(this.state.workspaces.filter((workspace) => workspace._id === match.params.workspace_id)[0])
             return (
+
                 <WorkSpaceView workspace={this.state.workspaces.filter((workspace) => workspace._id === match.params.workspace_id)[0]}
                     isLoading={this.state.workspaces_are_loading}
                 // errMess={this.props.dishes.errMess}
@@ -227,7 +229,7 @@ class Main extends Component {
 
                             <Route path="/COURSES/:course_id" component={course_with_id} />
 
-                            <Route path="/WORKSPACESVIEW/:workspace_id" component={workspace_with_id} />
+                            <Route path="/WORKSPACES/:workspace_id" component={workspace_with_id} />
 
                             <Route path="/auth" component={AuthPage} />
                             {/* <MapContainer /> */}
