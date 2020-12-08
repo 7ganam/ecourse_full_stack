@@ -1,6 +1,6 @@
 node_modules
 config.js
-.env
+/.env
 
 
 
@@ -19,11 +19,7 @@ front_end/coverage
 front_end/build
 
 # misc
-front_end/.DS_Store
-front_end/.env.local
-front_end/.env.development.local
-front_end/.env.test.local
-front_end/.env.production.local
+
 
 front_end/npm-debug.log*
 front_end/yarn-debug.log*

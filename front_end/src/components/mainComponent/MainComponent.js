@@ -119,6 +119,7 @@ class Main extends Component {
         }
     }
     fetchCourses = () => {
+        console.log(process.env.REACT_APP_BACKEND_URL)
         return fetch(process.env.REACT_APP_BACKEND_URL + 'courses')
             .then(response => response.json())
             .then(recieved_courses => {
