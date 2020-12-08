@@ -1,0 +1,54 @@
+[
+    {
+        "_id":"1234",
+        "logo_image":"ws_logo.png",      
+        "images":["ws1.webp","ws2.webp","ws3.webp","ws4.webp"],   
+        "workspace_name":"wonderland",
+        "session_price":"999",
+        "rating":"3",
+        "location": { "lng": 30, "lat": 31 },
+        "number_of_seats": 40,
+        "phone":"023243134134",
+        "address":"lielijvel/liaeie/llae",
+        "utilities":["printer","wifi","coffee corner","rest room","air conditioner","bean_bags"]
+    },
+    {
+        "_id":"78763224",
+        "logo_image":"ws_logo.png",      
+        "images":["ws1.webp","ws2.webp","ws3.webp","ws4.webp"],   
+        "workspace_name":"fancy name",
+        "session_price":"999",
+        "rating":"2",
+        "location": { "lng": 30.5, "lat": 31 },
+        "number_of_seats": 40,
+        "phone":"023243134134",
+        "address":"lielijvel/liaeie/llae",
+        "utilities":["printer","wifi","coffee corner","rest room","air conditioner","bean_bags"]
+    },
+    {
+        "_id":"34435456564",
+        "logo_image":"ws1.webp",      
+        "images":["ws1.webp","ws2.webp","ws3.webp","ws4.webp"],   
+        "workspace_name":"cube work space",
+        "session_price":"999",
+        "rating":"1.5",
+        "location": { "lng": 30.5, "lat": 31 },
+        "number_of_seats": 40,
+        "phone":"023243134134",
+        "address":"lielijvel/liaeie/llae",
+        "utilities":["printer","wifi","coffee corner","rest room","air conditioner","bean_bags"]
+    },
+    {
+        "_id":"345",
+        "logo_image":"ws2.webp",      
+        "images":["ws1.webp","ws2.webp","ws3.webp","ws4.webp"],   
+        "workspace_name":"7adanet nor el7ak",
+        "session_price":"999",
+        "rating":"1.5",
+        "location": { "lng": 30.5, "lat": 31 },
+        "number_of_seats": 40,
+        "phone":"023243134134",
+        "address":"lielijvel/liaeie/llae",
+        "utilities":["printer","wifi","coffee corner","rest room","air conditioner","bean_bags"]
+    }
+]

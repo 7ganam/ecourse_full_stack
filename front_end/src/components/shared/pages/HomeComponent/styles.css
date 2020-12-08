@@ -1,0 +1,42 @@
+#hero_image {
+    margin: 0;
+    position: absolute;
+    left: 0px;
+    top: 350px;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+#address_and_pupples {
+    margin: 0;
+    position: absolute;
+    left: 10%;
+    top: 100px;
+    z-index: -1;
+    width: 40%;
+    height: auto;
+
+}
+
+#top_right_svg {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+
+}
+
+#logo {
+    margin: 0;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: -1;
+
+}
+
+.navbar-collapsed {
+    background-color: whitesmoke;
+}

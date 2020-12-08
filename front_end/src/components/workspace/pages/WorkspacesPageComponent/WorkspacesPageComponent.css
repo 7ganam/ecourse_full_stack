@@ -1,0 +1,57 @@
+
+#WorkspacesPage_all2{
+    
+    width: 100%;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 200px;
+}
+#WorkspacesPage_title_container{
+    margin-bottom: 50px;
+
+}
+
+/* extra small */
+@media only screen and (max-width: 576px){
+    .WorkspacesPage_card2{
+        min-width: 200px;
+        margin: auto;
+    }
+    #WorkspacesPage_title2{
+        font-family:'Nova Round', cursive;
+        font-size: 30px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin:auto;
+        text-align: center;
+    }
+ }
+
+  /* small */
+@media only screen and (min-width: 576px){
+    #WorkspacesPage_title2{
+        font-family:'Nova Round', cursive;
+        font-size: 30px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin:auto;
+        text-align: center;
+    }
+
+  }
+
+    /* medium */
+@media only screen and (min-width: 768px){
+       
+}
+
+/* large */
+@media only screen and (min-width:  992px){
+  
+
+  }
+
+  /* extra large */
+@media only screen and (min-width: 1200px){
+  
+  }

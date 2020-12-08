@@ -1,0 +1,61 @@
+[
+    {
+        "_id":"1234",
+        "img":"python1.jpg",
+        "title": "sdfaef course",
+        "author":"abod eldackar",
+        "start_date":"15/5/5",
+        "end_date":"15/5/5",
+        "workspace_name":"wonderland",
+        "workspace_id":"",
+        "price":"999",
+        "rating":"3",
+        "course_description": "afaeli;li lja;li;li;a lin;linlinnipihaiugfkublkvjneuaha;ish; lnauhfehkishlvkubasiepo;gh;aoisgvasjdnvahse;i h;ih",
+        "course_slogan": "course slogan1 ... something emothional and energitic remember to request it in the course form",
+        "sessions":[{"Session_title":"aaaaaaaa","Session_Description":"aecave","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false},
+                    {"Session_title":"bbbbbbb","Session_Description":"dadfaefe","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false},
+                    {"Session_title":"ccccccc","Session_Description":"dadfaefdddddddddddddddddddddddddddddddddddddddddddddddddddddddddde","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false}
+                   ],
+        "what_will_learn":["basics of python syntax","concept2","concept3","concept4","concept5","concept6","concept7","concept8"]
+
+   
+    },
+    {
+        "_id":"1341441",
+        "img":"logo1.png",
+        "title": "python2 course",
+        "author":"abod eldackar",
+        "start_date":"15/5/5",
+        "workspace_name":"wonderland",
+        "workspace_id":"",
+        "price":"111",
+        "rating":"4",
+        "course_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "course_slogan": "course slogan2 ... something emothional and energitic remember to request it in the course form",
+        "sessions":[{"Session_title":"aaaaaaaa","Session_Description":"aecave","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false},
+                    {"Session_title":"bbbbbbb","Session_Description":"dadfaefe","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false},
+                    {"Session_title":"ccccccc","Session_Description":"dadfaefe","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false}
+                   ],
+        "what_will_learn":["concept1","concept2","concept3","concept4","concept5","concept6","concept7","concept8"]
+
+    },
+    {
+        "_id":"124444334",
+        "img":"logo1.png",
+        "title": "python3 course",
+        "author":"abod eldackar",
+        "start_date":"15/5/5",
+        "workspace_name":"wonderland",
+        "workspace_id":"",
+        "price":"342",
+        "rating":"2",
+        "course_description": " ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "course_slogan": "course slogan3 ... something emothional and energitic remember to request it in the course form",
+        "sessions":[{"Session_title":"aaaaaaaa","Session_Description":"aecave","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false},
+                    {"Session_title":"bbbbbbb","Session_Description":"dadfaefe","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false},
+                    {"Session_title":"ccccccc","Session_Description":"dadfaefe","Session_startDate":"2020-11-17T12:40:00.925Z","isOpen":false}
+                   ],
+        "what_will_learn":["concept1","concept2","concept3"]
+
+    }
+]

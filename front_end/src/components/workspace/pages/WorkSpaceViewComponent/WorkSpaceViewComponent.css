@@ -1,0 +1,98 @@
+
+.jumb{
+    /* background-color: #82C80B!important; */
+    /* background: rgb(169,237,109);
+    background: linear-gradient(0deg, rgba(169,237,109,0) 5%, rgba(104,169,24,1) 79%); */
+}
+
+.jumb_container{
+margin-top: 40px;
+}
+
+#rating_number{
+    padding-top: 3px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    margin-right: 1px;
+    color: grey;
+    font-weight: 600;
+}
+#rating_container{
+    display: flex;
+}
+
+#snippit_info{
+    display: flex;
+}
+
+#row_1{
+    margin-bottom: 3px!important;
+}
+.card_title122{
+    font-size: 30px;
+}
+
+#whatwilllearncontent{
+    display: flex;
+}
+
+.secenodary_image{
+    height : 250px;
+}
+
+
+/* extra small */
+@media only screen and (max-width: 576px){
+    #secondary_images_col{
+        display: none;
+    }
+
+}
+/* small */
+@media only screen and (min-width: 576px){
+
+    #secondary_images_col{
+        display: none;
+    }
+    
+    
+}
+
+/* medium */
+@media only screen and (min-width: 768px){
+/* ----------------------------make the floating container fixed in large  */
+#floatin_container2{
+    position: fixed;
+    left: 50%;
+    top:100px;
+    /* opacity:0; */
+    
+}
+#floatin_row2{
+    position: relative;
+    left: -50%;
+}
+/*--------------------------- make the floating container fixed in large  */
+
+    
+}
+
+/* large */
+@media only screen and (min-width:  992px){
+    #secondary_images_col{
+        display: block;
+    }
+    
+
+
+}
+
+/* extra large */
+@media only screen and (min-width: 1200px){
+    #secondary_images_col{
+        display: block;
+    }
+    
+
+}

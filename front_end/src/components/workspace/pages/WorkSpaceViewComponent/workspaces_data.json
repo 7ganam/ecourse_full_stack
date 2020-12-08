@@ -1,0 +1,15 @@
+[
+    {
+        "_id":"1234",
+        "logo_image":"ws_logo.png",      
+        "images":["ws1.webp","ws2.webp","ws3.webp","ws4.webp"],   
+        "workspace_name":"wonderland",
+        "session_price":"999",
+        "rating":"3",
+        "location": { "lng": 30.5, "lat": 31 },
+        "number_of_seats": 40,
+        "phone":"023243134134",
+        "address":"lielijvel/liaeie/llae"
+        
+    }
+]

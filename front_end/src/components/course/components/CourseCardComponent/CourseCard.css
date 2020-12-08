@@ -1,0 +1,40 @@
+.card-img-top {
+    height: 10rem;
+    object-fit: cover;
+}
+
+.ws_image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 1px;
+}
+
+
+.card_title{
+    /* height: 40px; */
+    font-family: 'Nova Round', cursive;
+    display: -webkit-box!important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin-bottom: 0px;
+
+}
+
+.no_overflow{
+    display: -webkit-box!important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.card_text_main{
+    /* color: #63C019; */
+    font-weight: bold;
+    margin-bottom: 0px;
+}

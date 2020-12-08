@@ -1,0 +1,31 @@
+[
+    {
+        "img":"logo1.png",
+        "title": "python course",
+        "author":"abod eldackar",
+        "start_date":"15/5/5",
+        "workspace_name":"wonderland",
+        "price":"999",
+        "rating":"3"
+    },
+    {
+        "img":"logo1.png",
+        "title": "python2 course",
+        "author":"abod eldackar",
+        "start_date":"15/5/5",
+        "workspace_name":"wonderland",
+        "price":"111",
+        "rating":"4"
+
+    },
+    {
+        "img":"logo1.png",
+        "title": "python3 course",
+        "author":"abod eldackar",
+        "start_date":"15/5/5",
+        "workspace_name":"wonderland",
+        "price":"342",
+        "rating":"2"
+
+    }
+]
