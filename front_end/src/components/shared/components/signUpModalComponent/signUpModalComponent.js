@@ -96,7 +96,7 @@ class SingUpModal extends Component {
             formData.append('password', this.state.password);
             formData.append('image', this.state.image);
 
-            const response = await fetch(`http://localhost:5000/users/signup`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}users/signup`, {
                 method: 'post',
                 body: formData,
             })
@@ -184,7 +184,7 @@ class SingUpModal extends Component {
                         <div class="modal-content">
                             <ModalHeader class="modal-header">
                                 <div class="avatar">
-                                    <img src={baseUrl + 'logo1.png'} alt="Avatar" />
+                                    <img src={process.env.REACT_APP_BACKEND_URL + 'logo1.png'} alt="Avatar" />
                                 </div>
                                 <h4 class="modal-title">Sign Up</h4>
                                 <button type="button" onClick={this.hide_modal} class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

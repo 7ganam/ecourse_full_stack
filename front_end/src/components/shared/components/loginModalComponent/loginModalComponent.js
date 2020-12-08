@@ -71,7 +71,7 @@ class LoginModal extends Component {
                         <div class="modal-content">
                             <ModalHeader class="modal-header">
                                 <div class="avatar">
-                                    <img src={baseUrl + 'logo1.png'} alt="Avatar" />
+                                    <img src={process.env.REACT_APP_BACKEND_URL + 'logo1.png'} alt="Avatar" />
                                 </div>
                                 <h4 class="modal-title">Member Login</h4>
                                 <button type="button" onClick={this.hide_modal} class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -112,7 +112,7 @@ class LoginModal extends Component {
         try {
             this.setState({ sending_data: true })
             const response = await fetch(
-                `http://localhost:5000/users/login`, {
+                `${process.env.REACT_APP_BACKEND_URL}users/login`, {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'

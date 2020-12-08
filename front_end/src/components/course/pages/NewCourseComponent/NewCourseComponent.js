@@ -15,6 +15,8 @@ import $ from 'jquery';
 import './NewCourseComponent.css'
 import "react-datepicker/dist/react-datepicker.css";
 
+import { baseUrl } from "../../../../shared/baseURL"
+
 
 
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
@@ -375,7 +377,7 @@ class NewCourse extends Component {
 
             // ----- first sending the json data (this is sent separatly because the json data is nestd )-----
 
-            const response = await fetch('http://localhost:5000/courses', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}courses`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -421,7 +423,7 @@ class NewCourse extends Component {
                 formData.append(key, value);
             }
 
-            const image_response = await fetch(`http://localhost:5000/courses/image/${responseData}`, {
+            const image_response = await fetch(`${process.env.REACT_APP_BACKEND_URL}courses/image/${responseData}`, {
                 method: 'post',
                 body: formData,
             })

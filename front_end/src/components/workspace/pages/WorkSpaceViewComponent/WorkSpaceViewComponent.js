@@ -175,7 +175,7 @@ class WorkspaceView extends Component {
                                     className="ws_image m-0"
                                     // src={require('./ws1.webp')}
 
-                                    src={baseUrl + "/uploads/images/workspaces/" + this.state.images[0]}
+                                    src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[0]}
                                 />
                             </Col>
 
@@ -184,7 +184,7 @@ class WorkspaceView extends Component {
                                     <Col className="p-0 secenodary_image " sm={12} lg={6} >
                                         <img
                                             className="ws_image m-0"
-                                            src={baseUrl + "/uploads/images/workspaces/" + this.state.images[0]}
+                                            src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[0]}
                                         />
 
                                     </Col>
@@ -192,23 +192,23 @@ class WorkspaceView extends Component {
                                     <Col className="p-0 secenodary_image " sm={12} lg={6} >
                                         <img
                                             className="ws_image m-0"
-                                            src={baseUrl + "/uploads/images/workspaces/" + this.state.images[1]}
+                                            src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[1]}
                                         />
                                     </Col>
 
                                     <Col className="p-0 secenodary_image " sm={12} lg={6} >
                                         <img
                                             className="ws_image m-0"
-                                            // src={`http://localhost:3000/workspaces_images/ws3.webp`}
-                                            src={baseUrl + "/uploads/images/workspaces/" + this.state.images[2]}
+
+                                            src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[2]}
                                         />
                                     </Col>
 
                                     <Col className="p-0 secenodary_image" sm={12} lg={6} >
                                         <img
                                             className="ws_image m-0"
-                                            // src={`http://localhost:3000/workspaces_images/ws4.webp`}
-                                            src={baseUrl + "/uploads/images/workspaces/" + this.state.images[3]}
+
+                                            src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[3]}
                                         />
 
                                     </Col>
@@ -230,7 +230,7 @@ class WorkspaceView extends Component {
                                 <Card>
 
                                     <CardImg top
-                                        src={baseUrl + "/uploads/images/workspaces/" + this.state.logo_image} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }} />
+                                        src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.logo_image} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }} />
                                     <CardBody className="p-0">
                                         <ListGroup>
                                             <ListGroupItem>

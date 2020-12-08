@@ -22,7 +22,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // FOR TESTING -------------------------------------------------------
 // import * as COURSES_DATA from '../../shared/courses_data.json';
-import * as WORKSPACES_DATA from '../../shared/workspaces_data.json';
+import * as WORKSPACESVIEW_DATA from '../../shared/workspaces_data.json';
 
 import { baseUrl } from "../../shared/baseURL"
 
@@ -39,7 +39,7 @@ class Main extends Component {
         this.state = {
             courses: [],
             courses_are_loading: true,
-            workspaces: WORKSPACES_DATA.default,
+            workspaces: WORKSPACESVIEW_DATA.default,
             workspaces_are_loading: true,
             isLoggedIn: false,
             show_auth_modal: false,
@@ -119,7 +119,7 @@ class Main extends Component {
         }
     }
     fetchCourses = () => {
-        return fetch(baseUrl + 'courses')
+        return fetch(process.env.REACT_APP_BACKEND_URL + 'courses')
             .then(response => response.json())
             .then(recieved_courses => {
                 // console.log("coursesd", coursesd)
@@ -129,7 +129,7 @@ class Main extends Component {
         //TODO:: error handling 
     }
     fetchWorkspaces = () => {
-        return fetch(baseUrl + 'workspaces')
+        return fetch(process.env.REACT_APP_BACKEND_URL + 'workspaces')
             .then(response => response.json())
             .then(recieved_workspaces => {
                 // console.log("coursesd", coursesd)
@@ -201,11 +201,11 @@ class Main extends Component {
                                 />
                             </Route>
 
-                            <Route exact path="/workspaces">
+                            <Route exact path="/WORKSPACESVIEW">
                                 <WorkspacesPage workspaces={this.state.workspaces} workspacesAreLoading={this.state.workspaces_are_loading} />
                             </Route>
 
-                            <Route exact path="/courses">
+                            <Route exact path="/COURSES">
                                 <Coursespage courses={this.state.courses} coursesAreLoading={this.state.courses_are_loading} />
                             </Route>
 
@@ -224,9 +224,9 @@ class Main extends Component {
                                 <WorkSpaceView workspace={this.state.workspaces[0]} />
                             </Route>
 
-                            <Route path="/courses/:course_id" component={course_with_id} />
+                            <Route path="/COURSES/:course_id" component={course_with_id} />
 
-                            <Route path="/workspaces/:workspace_id" component={workspace_with_id} />
+                            <Route path="/WORKSPACESVIEW/:workspace_id" component={workspace_with_id} />
 
                             <Route path="/auth" component={AuthPage} />
                             {/* <MapContainer /> */}

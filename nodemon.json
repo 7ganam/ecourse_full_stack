@@ -1,0 +1,5 @@
+{
+    "env":{
+        "TEST_EV" : "node mon environment variables work"
+    }
+}

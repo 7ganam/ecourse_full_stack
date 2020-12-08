@@ -10,6 +10,7 @@ import { AuthContext } from '../../../shared/context/auth-context';
 import ReactLoading from 'react-loading';
 import { Alert } from 'reactstrap';
 
+import { baseUrl } from "../../../../shared/baseURL"
 
 
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -274,7 +275,7 @@ class Newworkspace extends Component {
             formData.append('utilities', this.state.utilities.filter((util) => !!util)
             ); // filter out empty strings entries ""
 
-            const response = await fetch(`http://localhost:5000/workspaces`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}workspaces`, {
                 method: 'post',
                 headers: {
                     Authorization: this.context.token ? ('Bearer ' + this.context.token) : ""

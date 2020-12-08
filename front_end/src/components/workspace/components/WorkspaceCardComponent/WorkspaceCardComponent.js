@@ -25,7 +25,7 @@ const WorkspaceCard = (props) => {
     return (
         <div>
             <Card>
-                <CardImg top src={baseUrl + "uploads/images/workspaces/" + props.img} alt={baseUrl + "uploads/images/workspaces/" + props.img} />
+                <CardImg top src={process.env.REACT_APP_BACKEND_URL + "uploads/images/workspaces/" + props.img} alt={process.env.REACT_APP_BACKEND_URL + "uploads/images/workspaces/" + props.img} />
                 <CardBody>
                     <CardTitle ><h4 className="workspace_card_title">{props.title}</h4></CardTitle>
                     {/* <CardSubtitle>Author:</CardSubtitle> */}

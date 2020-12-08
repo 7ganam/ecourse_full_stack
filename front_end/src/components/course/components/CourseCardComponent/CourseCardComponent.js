@@ -22,7 +22,7 @@ const CourseCard = (props) => {
         <div>
             <Card title={props.title}>
 
-                <CardImg top src={baseUrl + "uploads/images/courses/" + props.img} alt={baseUrl + "uploads/images/courses" + props.img} />
+                <CardImg top src={process.env.REACT_APP_BACKEND_URL + "uploads/images/courses/" + props.img} alt={process.env.REACT_APP_BACKEND_URL + "uploads/images/courses" + props.img} />
                 <CardBody>
                     <CardTitle ><h4 className="card_title">{props.title}</h4></CardTitle>
                     {/* <CardSubtitle>Author:</CardSubtitle> */}
@@ -41,7 +41,7 @@ const CourseCard = (props) => {
                             <span >  {props.workspace_name}  </span>
                         </div>
                     </CardText>
-                    <Link to={`/courses/${props.course_id}`} >
+                    <Link to={`/COURSES/${props.course_id}`} >
                         <Button color="success" >Find more <span className="card_text_main"></span></Button>
                     </Link >
                 </CardBody>

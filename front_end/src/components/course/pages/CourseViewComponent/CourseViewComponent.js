@@ -167,8 +167,8 @@ class CourseView extends Component {
 
                                         src={
                                             !!this.state.Sessions[index].Session_image ?
-                                                `${baseUrl}/uploads/images/courses/${this.state.Sessions[index].Session_image}` :
-                                                baseUrl + "grey.jpeg"
+                                                `${process.env.REACT_APP_BACKEND_URL}uploads/images/courses/${this.state.Sessions[index].Session_image}` :
+                                                process.env.REACT_APP_BACKEND_URL + "grey.jpeg"
 
                                         }
 
@@ -262,7 +262,7 @@ class CourseView extends Component {
                             <div >
 
                                 <Card>
-                                    <CardImg top src={`${baseUrl}/uploads/images/courses/${this.props.course.img}`} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }} />
+                                    <CardImg top src={`${process.env.REACT_APP_BACKEND_URL}/uploads/images/courses/${this.props.course.img}`} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }} />
                                     <CardBody>
                                         <CardTitle>
 

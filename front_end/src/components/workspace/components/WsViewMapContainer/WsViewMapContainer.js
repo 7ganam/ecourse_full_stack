@@ -61,7 +61,7 @@ const MapContainer = (props) => {
                                 <img
                                     className="ws_image m-0"
                                     // src={require('./ws_logo.png')}
-                                    src={baseUrl + 'workspaces_images/ws_logo.png'} //TODO: make this a parameter passed by the ws view component
+                                    src={process.env.REACT_APP_BACKEND_URL + 'workspaces_images/ws_logo.png'} //TODO: make this a parameter passed by the ws view component
                                 />
 
                                 <p>{selected.name}</p>

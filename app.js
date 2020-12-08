@@ -8,12 +8,12 @@
 //---> installed cors and added the corse file to the router folder 
 // git commit  d50174554f04bd64765a3af498bf0f6b83e40bf3
 
-
-
+require('dotenv').config()
 //adding my config files 
-var config = require('./config');
-const url = config.mongoUrl;
 
+var config = require('./config');
+
+const url = config.mongoUrl;
 //add my routers 
 var courseRouter = require('./routes/courseRouter');
 var workspaceRouter = require('./routes/workspaceRouter');
@@ -45,12 +45,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
 
+// console.log(process.env.TEST_EV)
 
 
 
 //connect to mongose db 
 const mongoose = require('mongoose');
-const connect = mongoose.connect(url);
+const connect = mongoose.connect(process.env.MONGO_URI);
+// console.log(process.env.MONGO_URI)
 connect.then((db) => {
   console.log("Connected correctly to server ....");
 }, (err) => { console.log(err); });
@@ -58,19 +60,27 @@ connect.then((db) => {
 
 
 
-
-app.use('/', indexRouter);
-
 app.use('/users', usersRouter);
-
-
-//my own routers 
 app.use('/courses', courseRouter);
-
 app.use('/workspaces', workspaceRouter);
 
 
 
+// if not any of our apis are hit ... this means that the user don't have the client code ... send it to him
+//note that react router automatically loads the right if the requested URL wasn't the root /  .. i think the browser 
+//saves the url and when the react app is fetched it examins the url that caused the fetch and loads the right route directly..which is very cool.
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, '/front_end/build')));
+  app.get('*', (req, res) => {
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    console.log("fullUrl")
+    console.log({ fullUrl })
+    res.sendFile('./front_end/build/index.html', { root: __dirname });
+    // res.sendFile(path.resolve(__dirname, 'front_end', 'build', 'index.html'))
+  }
+  )
+
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -97,3 +107,4 @@ app.use(function (err, req, res, next) {
 
 
 module.exports = app;
+

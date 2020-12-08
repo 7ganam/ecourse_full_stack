@@ -112,12 +112,10 @@ class Header extends Component {
                         top: "-5px"
                     }} >
                         <NavbarBrand className="mr-auto" href="/">
-                            <img src={baseUrl + 'small_logo.png'} height="40" width="40" alt='' />
+                            <img src={process.env.REACT_APP_BACKEND_URL + 'small_logo.png'} height="40" width="40" alt='' />
                             <span className="brand_title">ecourse</span>
                         </NavbarBrand>
                     </div>
-
-
                     <NavbarToggler onClick={this.toggleNav} className="mr-2" />
 
                     <Collapse className="" isOpen={this.state.isNavOpen} navbar>
@@ -157,13 +155,13 @@ class Header extends Component {
 
                             </NavItem>
                             <NavItem onClick={this.closeNav} className=''>
-                                <Link to="/courses">
-                                    <div className="nav-link" to='/courses'><span className="fa fa-address-card fa-lg"></span>  Courses</div>
+                                <Link to="/COURSES">
+                                    <div className="nav-link" to='/COURSES'><span className="fa fa-address-card fa-lg"></span>  Courses</div>
                                 </Link>
                             </NavItem>
                             <NavItem onClick={this.closeNav} className=''>
-                                <Link to="/workspaces">
-                                    <div className="nav-link" to='/workspaces'><span className="fa fa-address-card fa-lg"></span>  Workspaces</div>
+                                <Link to="/WORKSPACESVIEW">
+                                    <div className="nav-link" to='/WORKSPACESVIEW'><span className="fa fa-address-card fa-lg"></span>  Workspaces</div>
                                 </Link>
                             </NavItem>
                             {!this.context.isLoggedIn &&
@@ -176,7 +174,7 @@ class Header extends Component {
                             {this.context.isLoggedIn &&
                                 <NavItem onClick={this.closeNav} className=''>
                                     <Button onClick={this.context.logout} color="success" id="" className=" my-1 mr-md-2 "  ><span className="fa fa-sign-in fa-lg"></span> Sign out</Button>
-                                    <img src={`${baseUrl}/uploads/images/users/${this.context.user.image}`} alt="Avatar" class="avatar" ></img>
+                                    <img src={`${process.env.REACT_APP_BACKEND_URL}uploads/images/users/${this.context.user.image}`} alt="Avatar" class="avatar" ></img>
 
                                 </NavItem>
                             }
