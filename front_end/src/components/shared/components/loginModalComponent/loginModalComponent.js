@@ -10,7 +10,9 @@ import './loginModalComponent.css'
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { AuthContext } from '../../context/auth-context';
+import { Alert } from 'reactstrap';
 
+import ReactLoading from 'react-loading';
 
 
 class LoginModal extends Component {
@@ -25,7 +27,6 @@ class LoginModal extends Component {
             expirateion_date_string: "",
 
             recieved_user: {},
-
             sending_datasending_data: false,
             loggedin_successfuly: false,
         };
@@ -94,6 +95,15 @@ class LoginModal extends Component {
                                         <button type="submit" onClick={e => this.submit_handler(e)} class="btn btn-primary btn-lg btn-block login-btn">Log in</button>
                                     </div>
                                 </form>
+                                {this.state.sending_data &&
+                                    <ReactLoading style={{ margin: "auto", width: "40px", height: "40px" }} type={"spinningBubbles"} color={"black"} height={'40px'} width={'40px'} />
+                                }
+                                {!!this.state.error_message &&
+
+                                    <Alert color="danger">
+                                        {this.state.error_message}
+                                    </Alert>
+                                }
                             </ModalBody>
                             <div class="modal-footer">
                                 <a href="#">Forgot Password?</a>

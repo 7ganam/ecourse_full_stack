@@ -234,19 +234,17 @@ class SingUpModal extends Component {
                                         <Button color="success" type="submit" onClick={this.submit_handler} class="btn btn-primary btn-lg btn-block login-btn" style={{ width: "100%" }}>Sign Up</Button>
                                     </div>
                                     {this.state.sending_data &&
-                                        <Col sm={{ size: 1 }}>
-                                            <ReactLoading type={"spinningBubbles"} color={"black"} height={'40px'} width={'40px'} />
-                                        </Col>
+                                        <ReactLoading style={{ margin: "auto", width: "40px", height: "40px" }} type={"spinningBubbles"} color={"black"} height={'40px'} width={'40px'} />
                                     }
                                     {!!this.state.error_message &&
-                                        <Col className="mt-3" sm={{ size: 12, }}>
 
-                                            <Alert color="danger">
-                                                {this.state.error_message}
-                                            </Alert>
-                                        </Col>
+                                        <Alert color="danger">
+                                            {this.state.error_message}
+                                        </Alert>
                                     }
                                 </form>
+
+
                             </ModalBody>
                             <div class="modal-footer">
                                 <a href="#">Forgot Password?</a>
