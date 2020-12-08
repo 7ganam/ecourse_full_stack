@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 
-import { baseUrl } from "../../../../shared/baseURL"
+//import { baseUrl } from "../../../../shared/baseURL"
 import './loginModalComponent.css'
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';

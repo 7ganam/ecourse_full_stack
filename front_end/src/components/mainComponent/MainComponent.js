@@ -24,7 +24,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import * as COURSES_DATA from '../../shared/courses_data.json';
 import * as WORKSPACESVIEW_DATA from '../../shared/workspaces_data.json';
 
-import { baseUrl } from "../../shared/baseURL"
+// import { baseUrl } from "../../shared/baseURL"
 
 import { AuthContext } from '../shared/context/auth-context';
 import { faTextHeight } from '@fortawesome/free-solid-svg-icons';

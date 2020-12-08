@@ -15,7 +15,7 @@ import $ from 'jquery';
 import './NewCourseComponent.css'
 import "react-datepicker/dist/react-datepicker.css";
 
-import { baseUrl } from "../../../../shared/baseURL"
+// //import { baseUrl } from "../../../../shared/baseURL"
 
 
 

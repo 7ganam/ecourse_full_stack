@@ -6,7 +6,7 @@ import { Card, CardBody, } from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 import MapContainer from "../../components/WsViewMapContainer/WsViewMapContainer"
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import { baseUrl } from "../../../../shared/baseURL"
+//import { baseUrl } from "../../../../shared/baseURL"
 
 import { faAddressBook, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";

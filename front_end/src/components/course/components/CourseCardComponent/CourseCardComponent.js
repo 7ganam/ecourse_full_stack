@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import "./CourseCard.css"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { baseUrl } from "../../../../shared/baseURL"
+// //import { baseUrl } from "../../../../shared/baseURL"
 const CourseCard = (props) => {
 
     const firstExample = {

@@ -14,7 +14,7 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { baseUrl } from "../../../../shared/baseURL"
+//import { baseUrl } from "../../../../shared/baseURL"
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
