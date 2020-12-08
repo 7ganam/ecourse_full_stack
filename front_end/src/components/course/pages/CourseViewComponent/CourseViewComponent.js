@@ -171,6 +171,7 @@ class CourseView extends Component {
                                                 process.env.REACT_APP_BACKEND_URL + "grey.jpeg"
 
                                         }
+                                        onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
 
                                         alt=" image cap" />
                                 </div>
@@ -262,7 +263,10 @@ class CourseView extends Component {
                             <div >
 
                                 <Card>
-                                    <CardImg top src={`${process.env.REACT_APP_BACKEND_URL}/uploads/images/courses/${this.props.course.img}`} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }} />
+                                    <CardImg top
+                                        src={`${process.env.REACT_APP_BACKEND_URL}/uploads/images/courses/${this.props.course.img}`} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }}
+                                        onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
+                                    />
                                     <CardBody>
                                         <CardTitle>
 

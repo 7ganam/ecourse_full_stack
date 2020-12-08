@@ -7,6 +7,9 @@ import {
 } from 'reactstrap';
 import "./CourseCard.css"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import error_image from './logo1.png'
+
 // //import { baseUrl } from "../../../../shared/baseURL"
 const CourseCard = (props) => {
 
@@ -18,11 +21,22 @@ const CourseCard = (props) => {
         isHalf: true,
 
     };
+
+
+
     return (
         <div>
             <Card title={props.title}>
+                {/* 
+                <CardImg id="card_image22" top
+                 src={process.env.REACT_APP_BACKEND_URL + "uploads/images/courses/" + props.img}
+                    onerror="this.style.display='none'"
+                /> */}
+                <CardImg top
+                    src={process.env.REACT_APP_BACKEND_URL + "uploads/images/courses/" + props.img}
+                    onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
+                />
 
-                <CardImg top src={process.env.REACT_APP_BACKEND_URL + "uploads/images/courses/" + props.img} alt={process.env.REACT_APP_BACKEND_URL + "uploads/images/courses" + props.img} />
                 <CardBody>
                     <CardTitle ><h4 className="card_title">{props.title}</h4></CardTitle>
                     {/* <CardSubtitle>Author:</CardSubtitle> */}

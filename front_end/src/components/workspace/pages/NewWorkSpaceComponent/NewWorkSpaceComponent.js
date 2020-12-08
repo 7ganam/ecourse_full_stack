@@ -452,7 +452,7 @@ class Newworkspace extends Component {
 
 
                             <Col id="f_image_1" md={6} className="mt-2">
-                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100px', }}>
+                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '150px', }}>
 
                                     <Input className="input_slot" type="file" name="featured_1" id="featured_1"
                                         // value={this.state.new_course_title}
@@ -473,7 +473,7 @@ class Newworkspace extends Component {
                             </Col >
 
                             <Col id="f_image_2" md={6} className="mt-2">
-                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100px', }}>
+                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '150px', }}>
 
                                     <Input className="input_slot" type="file" name="featured_2" id="featured_2"
                                         // value={this.state.new_course_title}
@@ -494,7 +494,7 @@ class Newworkspace extends Component {
                             </Col >
 
                             <Col id="f_image_3" md={6} className="mt-2">
-                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100px', }}>
+                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '150px', }}>
 
                                     <Input className="input_slot" type="file" name="featured_3" id="featured_3"
                                         // value={this.state.new_course_title}
@@ -515,7 +515,7 @@ class Newworkspace extends Component {
                             </Col >
 
                             <Col id="f_image_4" md={6} className="mt-2">
-                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100px', }}>
+                                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '150px', }}>
 
                                     <Input className="input_slot" type="file" name="featured_4" id="featured_4"
                                         // value={this.state.new_course_title}

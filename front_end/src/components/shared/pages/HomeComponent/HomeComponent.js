@@ -17,6 +17,7 @@ import FeaturedCourses from '../../../course/components/FeateuredCourses_Compone
 import FeaturedWorkspaces from '../../../workspace/components/FeaturedWorkspacesComponent/FeaturedWorkspacesComponent';
 import { AuthContext } from '../../context/auth-context';
 
+import $ from 'jquery';
 
 import './Home.css'
 
@@ -33,7 +34,6 @@ class Home extends Component {
 
 
         this.render_courses = this.render_courses.bind(this);
-        this.login = this.login.bind(this);
 
     }
 
@@ -45,6 +45,21 @@ class Home extends Component {
         // console.log(logs)
     }
 
+
+
+
+    componentDidMount() { // if the hero sign in buttons clicked click on the header bottons which show the modals
+        $("#sign_up_button").on("click", function (e) {
+            e.preventDefault()
+            $("#sign_up_heder_button").trigger('click');
+        });
+
+        $("#log_in_button").on("click", function (e) {
+            e.preventDefault()
+            $("#login_header_button").trigger('click');
+        });
+
+    }
 
     container_styles = {
         // justifyContent: 'center'
@@ -99,11 +114,7 @@ class Home extends Component {
     }
 
 
-    login() {
-        this.context.login();
-        // console.log(this.context)
 
-    }
     render() {
         // render_courses
         return (
@@ -121,7 +132,7 @@ class Home extends Component {
                         <Container >
                             {!this.context.isLoggedIn &&
                                 <Row style={this.row_styles} id="buttons_row">
-                                    <Button onClick={this.login} id="log_in_button" className="my-1 my-md-0 mr-sm-2 " outline ><span className="fa fa-sign-in fa-lg "></span> Login</Button>
+                                    <Button id="log_in_button" className="my-1 my-md-0 mr-sm-2 " outline ><span className="fa fa-sign-in fa-lg "></span> Login</Button>
                                     <Button color="success" id="sign_up_button" className=" my-1 my-md-0 "  ><span className="fa fa-sign-in fa-lg"></span> Sign Up</Button>
                                 </Row>
                             }

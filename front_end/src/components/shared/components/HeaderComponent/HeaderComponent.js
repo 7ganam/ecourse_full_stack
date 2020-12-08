@@ -112,7 +112,10 @@ class Header extends Component {
                         top: "-5px"
                     }} >
                         <NavbarBrand className="mr-auto" href="/">
-                            <img src={process.env.REACT_APP_BACKEND_URL + 'small_logo.png'} height="40" width="40" alt='' />
+                            <img
+                                src={process.env.REACT_APP_BACKEND_URL + 'small_logo.png'} height="40" width="40" alt=''
+                                onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
+                            />
                             <span className="brand_title">ecourse</span>
                         </NavbarBrand>
                     </div>
@@ -165,16 +168,21 @@ class Header extends Component {
                                 </Link>
                             </NavItem>
                             {!this.context.isLoggedIn &&
-                                <Button onClick={this.show_login_modal} id="" className="my-1 mr-md-2 " outline ><span className="fa fa-sign-in fa-lg "></span> Login</Button>
+                                <Button onClick={this.show_login_modal} id="login_header_button" className="my-1 mr-md-2 " outline ><span className="fa fa-sign-in fa-lg "></span> Login</Button>
                             }
                             {!this.context.isLoggedIn &&
-                                <Button onClick={this.show_singup_modal} color="success" id="" className=" my-1 mr-md-2 "  ><span className="fa fa-sign-in fa-lg"></span> Sign Up</Button>
+                                <Button onClick={this.show_singup_modal} color="success" id="sign_up_heder_button" className=" my-1 mr-md-2 "  ><span className="fa fa-sign-in fa-lg"></span> Sign Up</Button>
                             }
 
                             {this.context.isLoggedIn &&
                                 <NavItem onClick={this.closeNav} className=''>
                                     <Button onClick={this.context.logout} color="success" id="" className=" my-1 mr-md-2 "  ><span className="fa fa-sign-in fa-lg"></span> Sign out</Button>
-                                    <img src={`${process.env.REACT_APP_BACKEND_URL}uploads/images/users/${this.context.user.image}`} alt="Avatar" class="avatar" ></img>
+                                    <img src={`${process.env.REACT_APP_BACKEND_URL}uploads/images/users/${this.context.user.image}`} alt="Avatar" class="avatar"
+                                        onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
+                                    >
+
+
+                                    </img>
 
                                 </NavItem>
                             }

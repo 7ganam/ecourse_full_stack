@@ -25,7 +25,10 @@ const WorkspaceCard = (props) => {
     return (
         <div>
             <Card>
-                <CardImg top src={process.env.REACT_APP_BACKEND_URL + "uploads/images/workspaces/" + props.img} alt={process.env.REACT_APP_BACKEND_URL + "uploads/images/workspaces/" + props.img} />
+                <CardImg top
+                    src={process.env.REACT_APP_BACKEND_URL + "uploads/images/workspaces/" + props.img} alt={process.env.REACT_APP_BACKEND_URL + "uploads/images/workspaces/" + props.img}
+                    onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
+                />
                 <CardBody>
                     <CardTitle ><h4 className="workspace_card_title">{props.title}</h4></CardTitle>
                     {/* <CardSubtitle>Author:</CardSubtitle> */}

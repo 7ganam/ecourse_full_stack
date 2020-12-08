@@ -525,9 +525,14 @@ class NewCourse extends Component {
                                     <FormText color="muted">
                                         choose image that represents this session
                                     </FormText>
-                                    <div style={{ overflow: 'hidden', width: "250px", height: "250px", display: "flex", alignItems: "center", justifyContent: "center", borderStyle: 'dashed', borderColor: '#cac7c7', borderWidth: 'thin' }}>
-                                        <img id={"session_image_display_" + index} src={upload_image_filler} alt="your image" style={{ height: "100%", width: "auto" }} />
+                                    <div style={{ overflow: 'hidden', width: "100%", height: "250px", display: "flex", alignItems: "center", justifyContent: "center", borderStyle: 'dashed', borderColor: '#cac7c7', borderWidth: 'thin' }}>
+                                        <div
+                                            style={{ overflow: 'hidden', width: "250px", height: "250px", display: "flex", alignItems: "center", justifyContent: "center", }}>
+
+                                            <img id={"session_image_display_" + index} src={upload_image_filler} alt="your image" style={{ height: "100%", width: "auto" }} />
+                                        </div>
                                     </div>
+
                                 </div>
 
                             </Col>
@@ -611,7 +616,8 @@ class NewCourse extends Component {
                             <FormText color="muted">
                                 This image will be used the thumb nail of your course .. choose attractive image.
                             </FormText>
-                            <div>
+                            <div style={{ overflow: 'hidden', width: "100%", height: "250px", display: "flex", alignItems: "center", justifyContent: "center", borderColor: '#cac7c7', borderWidth: 'thin', marginTop: "10px", marginBottom: "10px" }}
+                            >
                                 <div style={{ overflow: 'hidden', width: "250px", height: "250px", display: "flex", alignItems: "center", justifyContent: "center", borderStyle: 'dashed', borderColor: '#cac7c7', borderWidth: 'thin' }}>
                                     <img id="course_image_display" src={upload_image_filler} alt="your image" style={{ height: "100%", width: "auto" }} />
                                 </div>

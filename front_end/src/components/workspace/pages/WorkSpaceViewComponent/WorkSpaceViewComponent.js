@@ -176,6 +176,7 @@ class WorkspaceView extends Component {
                                     // src={require('./ws1.webp')}
 
                                     src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[0]}
+                                    onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
                                 />
                             </Col>
 
@@ -185,6 +186,7 @@ class WorkspaceView extends Component {
                                         <img
                                             className="ws_image m-0"
                                             src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[0]}
+                                            onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
                                         />
 
                                     </Col>
@@ -193,6 +195,7 @@ class WorkspaceView extends Component {
                                         <img
                                             className="ws_image m-0"
                                             src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[1]}
+                                            onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
                                         />
                                     </Col>
 
@@ -201,6 +204,8 @@ class WorkspaceView extends Component {
                                             className="ws_image m-0"
 
                                             src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[2]}
+
+                                            onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
                                         />
                                     </Col>
 
@@ -209,6 +214,10 @@ class WorkspaceView extends Component {
                                             className="ws_image m-0"
 
                                             src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.images[3]}
+
+                                            onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
+
+                                            onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
                                         />
 
                                     </Col>
@@ -230,7 +239,9 @@ class WorkspaceView extends Component {
                                 <Card>
 
                                     <CardImg top
-                                        src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.logo_image} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }} />
+                                        src={process.env.REACT_APP_BACKEND_URL + "/uploads/images/workspaces/" + this.state.logo_image} alt="Card image cap" style={{ height: '15rem', objectFit: 'cover' }}
+                                        onError={(e) => { e.target.onerror = null; e.target.src = "https://egycourses.herokuapp.com/logo1.png" }}
+                                    />
                                     <CardBody className="p-0">
                                         <ListGroup>
                                             <ListGroupItem>

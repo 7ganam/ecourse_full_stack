@@ -14,6 +14,7 @@ import Auth from "../shared/components/AuthModalComponent/AuthModalComponent"
 import LoginModal from "../shared/components/loginModalComponent/loginModalComponent"
 import SignUpModal from "../shared/components/signUpModalComponent/signUpModalComponent"
 
+import $ from 'jquery';
 
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -117,6 +118,11 @@ class Main extends Component {
         if (storedData && storedData.token) {
             this.login(storedData.token, storedData.user);
         }
+
+
+        $("img").on("error", function () {
+            $(this).attr("alt", "broken");
+        });
     }
     fetchCourses = () => {
         console.log(process.env.REACT_APP_BACKEND_URL)
